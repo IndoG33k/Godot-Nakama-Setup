@@ -1,0 +1,196 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctgapegrqd63p"]
+
+[ext_resource type="Script" path="res://Client.gd" id="1_0014i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -2.0
+offset_right = -7.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0014i")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 246.0
+offset_right = 891.0
+offset_bottom = 328.0
+
+[node name="UserAccount" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+offset_left = 48.0
+offset_top = 13.0
+offset_right = 145.56
+offset_bottom = 36.0
+text = "User Account"
+
+[node name="UserAccountText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+offset_left = 167.0
+offset_top = 14.0
+offset_right = 264.56
+offset_bottom = 37.0
+text = "User Account"
+
+[node name="DisplayName" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+offset_left = 48.0
+offset_top = 40.0
+offset_right = 149.56
+offset_bottom = 63.0
+text = "Display Name"
+
+[node name="DisplayNameText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+offset_left = 167.0
+offset_top = 40.0
+offset_right = 264.56
+offset_bottom = 63.0
+text = "User Account"
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 242.0
+offset_right = 484.0
+offset_bottom = 381.0
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 62.0
+offset_bottom = 38.0
+text = "Email"
+
+[node name="Label2" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 48.0
+offset_right = 63.0
+offset_bottom = 71.0
+text = "Password"
+
+[node name="EmailInput" type="LineEdit" parent="Panel2"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 10.0
+offset_right = 322.0
+offset_bottom = 41.0
+text = "test@gmail.com"
+
+[node name="PasswordInput" type="LineEdit" parent="Panel2"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 48.0
+offset_right = 323.0
+offset_bottom = 79.0
+text = "password"
+
+[node name="LoginButton" type="Button" parent="Panel2"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 98.0
+offset_right = 318.0
+offset_bottom = 125.0
+text = "Submit"
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 427.0
+offset_right = 376.0
+offset_bottom = 573.0
+
+[node name="StoreData" type="Button" parent="Panel3"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 14.0
+offset_right = 141.0
+offset_bottom = 45.0
+text = "Store Data"
+
+[node name="GetData" type="Button" parent="Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 54.0
+offset_right = 173.0
+offset_bottom = 85.0
+text = "Get Data from Store"
+
+[node name="ListData" type="Button" parent="Panel3"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 98.0
+offset_right = 175.0
+offset_bottom = 129.0
+text = "List Data from Store"
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 439.0
+offset_right = 839.0
+offset_bottom = 641.0
+
+[node name="Label" type="Label" parent="Panel4"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 112.0
+offset_bottom = 50.0
+text = "Match Name
+"
+
+[node name="MatchName" type="LineEdit" parent="Panel4"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 23.0
+offset_right = 326.0
+offset_bottom = 54.0
+
+[node name="JoinCreateMatch" type="Button" parent="Panel4"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 94.0
+offset_right = 317.0
+offset_bottom = 125.0
+text = "Join/Create"
+
+[node name="Ping" type="Button" parent="Panel4"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 93.0
+offset_right = 113.0
+offset_bottom = 125.0
+text = "Ping"
+
+[node name="Matchmaking" type="Button" parent="Panel4"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 141.0
+offset_right = 255.0
+offset_bottom = 180.0
+text = "Start Matchmaking"
+
+[connection signal="button_down" from="Panel2/LoginButton" to="." method="_on_login_button_button_down"]
+[connection signal="button_down" from="Panel3/StoreData" to="." method="_on_store_data_button_down"]
+[connection signal="button_down" from="Panel3/GetData" to="." method="_on_get_data_button_down"]
+[connection signal="button_down" from="Panel3/ListData" to="." method="_on_list_data_button_down"]
+[connection signal="button_down" from="Panel4/JoinCreateMatch" to="." method="_on_join_create_match_button_down"]
+[connection signal="button_down" from="Panel4/Ping" to="." method="_on_ping_button_down"]
+[connection signal="button_down" from="Panel4/Matchmaking" to="." method="_on_matchmaking_button_down"]
