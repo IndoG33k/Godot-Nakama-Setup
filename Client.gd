@@ -4,6 +4,7 @@ class_name NakamaMultiplayer
 var session : NakamaSession
 var client : NakamaClient
 var socket : NakamaSocket
+var Match
 var multiplayerBridge
 
 func _process(delta: float) -> void:
@@ -142,9 +143,9 @@ func _on_join_create_match_button_down() -> void:
 
 
 func _on_ping_button_down() -> void:
-	sendData.rpc("Hello World")
-	#var data = {"hello" : "world"}
-	#socket.send_match_state_async($Panel4/MatchName.text, 1, JSON.stringify(data))
+	#sendData.rpc("Hello World")
+	var newData = {"hello" : "world"}
+	socket.send_match_state_async(Match.match_id, 1, JSON.stringify(newData))
 	pass # Replace with function body.
 
 @rpc("any_peer")
@@ -154,4 +155,20 @@ func sendData(message):
 
 func _on_matchmaking_button_down() -> void:
 	var query = "+properties.region:US +properties.rank:>=4 +properties.rank:<=10"
+	var stringP = {"region" : "US"}
+	var numberP = {"rank" : 6}
+	
+	var ticket = await socket.add_matchmaker_async(query, 2, 4, stringP, numberP)
+	
+	if ticket.is_exception():
+		print("Failed matchmaking: " + str(ticket))
+		return
+		
+	print("Match Ticket Number: " + str(ticket))
+	
+	socket.received_matchmaker_matched.connect(onMatchMakerMatched)
 	pass # Replace with function body.
+
+func onMatchMakerMatched(matched : NakamaRTAPI.MatchmakerMatched):
+	var joinedMatch = await socket.join_matched_async(matched)
+	Match = joinedMatch
