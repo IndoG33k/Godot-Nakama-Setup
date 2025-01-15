@@ -7,6 +7,10 @@ var socket : NakamaSocket
 var Match
 var multiplayerBridge
 
+static var Players = {}
+
+signal onStartGame()
+
 func _process(delta: float) -> void:
 	pass
 	
@@ -70,6 +74,16 @@ func setupMultiplayerBridge():
 
 func onPeerConnected(id):
 	print("Peer Connected! Id is: " + str(id))
+	if !Players.has(id):
+		Players[id] = {
+			"name" : id,
+			"ready" : 0
+		}
+	if !Players.has(multiplayer.get_unique_id()):
+		Players[multiplayer.get_unique_id()] = {
+			"name" : multiplayer.get_unique_id(),
+			"ready" : 0
+		}
 	
 func onPeerDisconnected(id):
 	print("Peer Disconnected! Id is: " + str(id))
@@ -172,3 +186,26 @@ func _on_matchmaking_button_down() -> void:
 func onMatchMakerMatched(matched : NakamaRTAPI.MatchmakerMatched):
 	var joinedMatch = await socket.join_matched_async(matched)
 	Match = joinedMatch
+
+
+func _on_button_button_down() -> void:
+	Ready.rpc(multiplayer.get_unique_id())
+	pass # Replace with function body.
+
+@rpc("any_peer", "call_local")
+func Ready(id):
+	Players[id].ready = 1
+	
+	if multiplayer.is_server():
+		var readyPlayers = 0
+		for i in Players:
+			if Players[i].ready == 1:
+				readyPlayers += 1
+		if readyPlayers == Players.size():
+			StartGame.rpc()
+
+@rpc("any_peer", "call_local")
+func StartGame():
+	onStartGame.emit()
+	hide()
+	pass

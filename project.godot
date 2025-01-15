@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 
+[global_group]
+
+SpawnPoint=""
+
 [rendering]
 
 renderer/rendering_method="mobile"

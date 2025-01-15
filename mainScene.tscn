@@ -142,10 +142,10 @@ text = "List Data from Store"
 
 [node name="Panel4" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 439.0
-offset_right = 839.0
-offset_bottom = 641.0
+offset_left = 563.0
+offset_top = 346.0
+offset_right = 902.0
+offset_bottom = 630.0
 
 [node name="Label" type="Label" parent="Panel4"]
 layout_mode = 0
@@ -182,10 +182,19 @@ text = "Ping"
 [node name="Matchmaking" type="Button" parent="Panel4"]
 layout_mode = 0
 offset_left = 85.0
-offset_top = 141.0
+offset_top = 156.0
 offset_right = 255.0
-offset_bottom = 180.0
+offset_bottom = 195.0
 text = "Start Matchmaking"
+
+[node name="Button" type="Button" parent="Panel4"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 219.0
+offset_right = 248.0
+offset_bottom = 257.0
+text = "Start Game
+"
 
 [connection signal="button_down" from="Panel2/LoginButton" to="." method="_on_login_button_button_down"]
 [connection signal="button_down" from="Panel3/StoreData" to="." method="_on_store_data_button_down"]
@@ -194,3 +203,4 @@ text = "Start Matchmaking"
 [connection signal="button_down" from="Panel4/JoinCreateMatch" to="." method="_on_join_create_match_button_down"]
 [connection signal="button_down" from="Panel4/Ping" to="." method="_on_ping_button_down"]
 [connection signal="button_down" from="Panel4/Matchmaking" to="." method="_on_matchmaking_button_down"]
+[connection signal="button_down" from="Panel4/Button" to="." method="_on_button_button_down"]
